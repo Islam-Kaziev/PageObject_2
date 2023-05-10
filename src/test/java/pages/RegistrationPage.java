@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+
     CalendarComonent calendarComonent = new CalendarComonent();
     RegistrationResultModal registrationResultModal = new RegistrationResultModal();
         private final String TITLE_TEXT = "Student Registration Form";
@@ -19,16 +20,21 @@ public class RegistrationPage {
                                         emailInput = $("#userEmail"),
                                         genderInput = $("#genterWrapper"),
                                         phoneInput = $("#userNumber"),
-                                        sobjectInput = $("#subjectsInput"),
+                                        subjectInput = $("#subjectsInput"),
                                         hobbiesInput = $("label[for=hobbies-checkbox-1]"),
                                         imageUpload = $("#uploadPicture"),
                                         currentAddressInput =  $("#currentAddress"),
                                         stateInput = $("#state"),
                                         cityInput = $("#city"),
-                submitButton = $("#submit");
+                                        submitButton = $("#submit");
     public RegistrationPage openPage() {
         open("https://demoqa.com/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
+
+        return this;
+    }
+
+    public RegistrationPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
 
@@ -84,8 +90,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setSobject(String value) {
-        sobjectInput.setValue(value).pressEnter();
+    public RegistrationPage setSubject(String value) {
+        subjectInput.setValue(value).pressEnter();
 
         return this;
     }

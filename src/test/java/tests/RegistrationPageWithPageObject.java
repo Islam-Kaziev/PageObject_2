@@ -1,15 +1,12 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import java.io.File;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-
 public class RegistrationPageWithPageObject extends TestBase {
-
+    RegistrationPage registrationPage = new RegistrationPage();
     @Test
     void fillFormTest() {
         String userName = "Islam";
@@ -27,14 +24,15 @@ public class RegistrationPageWithPageObject extends TestBase {
         String city = "Delhi";
 
         registrationPage.openPage()
+                .removeBanner()
                 .setFirstName(userName)
                 .setLastName(lastName)
                 .setEmail(email)
                 .setGender(gender)
                 .setPhone(phone)
                 .setBirthDate("20", "July", "2007")
-                .setSobject(firstSubject)
-                .setSobject(secondSubject)
+                .setSubject(firstSubject)
+                .setSubject(secondSubject)
                 .setHobbies(hobby)
                 .setPicture(fileToUpload)
                 .setCurrenAddress(currentAddress)
